@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VW Brooks — Catálogo</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #2196f3;
+  --blue-bright: #42b0ff;
+  --blue-dark: #0d6bbf;
+  --bg: #0e0e0e;
+  --bg2: #161616;
+  --bg3: #1e1e1e;
+  --bg4: #262626;
+  --text: #f0f0f0;
+  --muted: #888;
+  --border: rgba(255,255,255,0.08);
+  --border-blue: rgba(33,150,243,0.35);
+  --danger: #f44336;
+  --success: #4caf50;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px;}
+
+/* HEADER */
+header{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100;padding:0 2rem;height:66px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{display:flex;align-items:center;gap:0.5rem;text-decoration:none;cursor:pointer;user-select:none;}
+.logo-vw{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;line-height:1;color:var(--blue-bright);text-transform:uppercase;letter-spacing:-0.02em;}
+.logo-brooks{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:0.18em;text-transform:uppercase;line-height:1;padding-top:3px;}
+.header-right{display:flex;align-items:center;gap:0.6rem;}
+
+/* BUTTONS */
+.btn{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;
+  text-transform:uppercase;font-size:0.82rem;padding:0.45rem 1.1rem;border-radius:4px;
+  border:none;cursor:pointer;transition:all 0.15s;
+}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--muted);}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
+.btn-blue{background:var(--blue);color:#fff;}
+.btn-blue:hover{background:var(--blue-bright);}
+.btn-danger{background:var(--danger);color:#fff;}
+.btn-danger:hover{opacity:0.85;}
+.btn-sm{font-size:0.78rem;padding:0.38rem 1rem;}
+
+/* ADMIN PANEL */
+#adminPanel{display:none;background:var(--bg2);border-bottom:1px solid var(--border);}
+#adminPanel.show{display:block;}
+.ap-inner{
+  max-width:1400px;margin:0 auto;padding:1rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.ap-user{display:flex;align-items:center;gap:0.75rem;}
+.ap-avatar{
+  width:34px;height:34px;border-radius:50%;background:var(--blue-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:0.85rem;color:#fff;
+}
+.ap-info p{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.06em;text-transform:uppercase;}
+.ap-info small{font-size:0.72rem;color:var(--muted);}
+.ap-actions{display:flex;gap:0.5rem;}
+
+/* STATS */
+#statsBar{display:none;background:var(--bg3);border-bottom:1px solid var(--border);}
+#statsBar.show{display:block;}
+.stats-inner{max-width:1400px;margin:0 auto;padding:0.9rem 2rem;display:flex;gap:2.5rem;flex-wrap:wrap;}
+.stat{}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+.stat-value{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;line-height:1.1;}
+.stat-value.blue{color:var(--blue-bright);}
+
+/* HERO */
+.hero{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 80% at 50% 110%, rgba(33,150,243,0.1) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-tag{
+  display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue-bright);
+  border:1px solid var(--border-blue);padding:0.22rem 0.9rem;border-radius:2px;margin-bottom:1rem;
+}
+.hero h1{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(2.8rem,7vw,5rem);text-transform:uppercase;letter-spacing:-0.01em;
+  line-height:0.95;margin-bottom:0.75rem;
+}
+.hero h1 .blue{color:var(--blue-bright);}
+.hero p{color:var(--muted);font-size:0.9rem;letter-spacing:0.06em;font-weight:300;}
+
+/* CAT BAR */
+.cat-bar{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:0 2rem;display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
+}
+.cat-bar::-webkit-scrollbar{display:none;}
+.cat-btn{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;
+  letter-spacing:0.12em;text-transform:uppercase;padding:0.9rem 1.25rem;border:none;
+  background:transparent;color:var(--muted);cursor:pointer;
+  border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s;
+}
+.cat-btn:hover{color:var(--text);}
+.cat-btn.active{color:var(--blue-bright);border-bottom-color:var(--blue-bright);}
+
+/* MAIN */
+main{padding:2rem;max-width:1400px;margin:0 auto;}
+.section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem;}
+.section-header h2{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;
+  text-transform:uppercase;letter-spacing:0.05em;
+}
+.count-badge{font-size:0.78rem;color:var(--muted);}
+
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1.2rem;}
+
+/* CARD */
+.card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+  overflow:hidden;transition:border-color 0.2s,transform 0.2s;
+}
+.card:hover{border-color:var(--border-blue);transform:translateY(-2px);}
+.card-img-wrap{
+  position:relative;aspect-ratio:3/4;background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:3rem;color:var(--bg4);overflow:hidden;
+}
+.card-img-wrap img{width:100%;height:100%;object-fit:cover;}
+.badge-status{
+  position:absolute;top:10px;right:10px;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.18rem 0.55rem;border-radius:2px;
+}
+.badge-status.sim{background:rgba(76,175,80,0.15);color:#66bb6a;border:1px solid rgba(76,175,80,0.3);}
+.badge-status.nao{background:rgba(244,67,54,0.15);color:#ef5350;border:1px solid rgba(244,67,54,0.3);}
+.card-body{padding:0.9rem;}
+.card-cat{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.67rem;
+  letter-spacing:0.16em;text-transform:uppercase;color:var(--blue);margin-bottom:0.25rem;
+}
+.card-name{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.1rem;
+  text-transform:uppercase;letter-spacing:0.03em;margin-bottom:0.3rem;line-height:1.1;
+}
+.card-desc{font-size:0.79rem;color:var(--muted);line-height:1.5;margin-bottom:0.5rem;}
+.card-sizes{font-size:0.74rem;color:var(--blue);margin-bottom:0.65rem;letter-spacing:0.04em;}
+.card-footer{display:flex;align-items:center;justify-content:space-between;}
+.price{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.3rem;color:#fff;}
+.price span{font-size:0.78rem;font-weight:400;color:var(--muted);}
+.card-admin-bar{
+  margin-top:0.7rem;padding-top:0.7rem;border-top:1px solid var(--border);display:flex;gap:0.4rem;
+}
+.btn-edit-card{
+  flex:1;padding:0.38rem;background:var(--bg3);border:1px solid var(--border);border-radius:4px;
+  color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;
+  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.15s;
+}
+.btn-edit-card:hover{border-color:var(--blue);color:var(--blue);}
+
+/* EMPTY */
+.empty{text-align:center;padding:5rem 2rem;color:var(--muted);}
+.empty .icon{font-size:2.5rem;margin-bottom:1rem;opacity:0.3;}
+.empty p{font-size:0.9rem;}
+
+/* OVERLAY */
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:300;
+  display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px);
+}
+.overlay.open{display:flex;}
+.modal{
+  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  width:100%;max-width:490px;max-height:92vh;overflow-y:auto;padding:2rem;
+}
+.modal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;}
+.modal-header h2{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1.35rem;
+  text-transform:uppercase;letter-spacing:0.06em;
+}
+.modal-close{background:transparent;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;padding:0.2rem 0.5rem;transition:color 0.15s;}
+.modal-close:hover{color:var(--text);}
+.form-group{margin-bottom:0.9rem;}
+.form-group label{
+  display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.72rem;
+  letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem;
+}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;padding:0.62rem 0.85rem;background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;color:var(--text);font-family:'Barlow',sans-serif;font-size:0.88rem;
+  outline:none;transition:border-color 0.15s;-webkit-appearance:none;
+}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--blue);}
+.form-group textarea{resize:vertical;min-height:72px;}
+.form-group select option{background:var(--bg3);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.img-preview{
+  width:100%;aspect-ratio:3/4;background:var(--bg3);border:1px dashed rgba(255,255,255,0.1);
+  border-radius:4px;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin-top:0.45rem;color:var(--muted);font-size:2rem;
+}
+.img-preview img{width:100%;height:100%;object-fit:cover;}
+.modal-actions{display:flex;gap:0.7rem;margin-top:1.4rem;}
+.modal-actions .btn{flex:1;padding:0.68rem;}
+.delete-zone{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:none;}
+
+/* LOGIN */
+.login-screen{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);
+  z-index:400;align-items:center;justify-content:center;backdrop-filter:blur(8px);
+}
+.login-screen.open{display:flex;}
+.login-box{
+  background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+  padding:2.5rem;width:100%;max-width:360px;
+}
+.login-logo{text-align:center;margin-bottom:2rem;}
+.login-logo .vw{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:3rem;
+  color:var(--blue-bright);display:block;line-height:1;
+}
+.login-logo .brooks{
+  font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;
+  letter-spacing:0.3em;color:#fff;text-transform:uppercase;
+}
+.login-logo .sub{font-size:0.75rem;color:var(--muted);margin-top:0.5rem;letter-spacing:0.08em;}
+.error-msg{
+  background:rgba(244,67,54,0.1);border:1px solid rgba(244,67,54,0.25);color:#ef5350;
+  font-size:0.8rem;padding:0.45rem 0.7rem;border-radius:4px;margin-bottom:0.75rem;display:none;
+}
+
+@media(max-width:600px){
+  header{padding:0 1rem;}
+  main{padding:1rem;}
+  .hero{padding:2rem 1rem 1.8rem;}
+  .cat-bar{padding:0 1rem;}
+  .ap-inner,.stats-inner{padding:0.9rem 1rem;}
+  .stats-inner{gap:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <span class="vw">VW</span>
+      <span class="brooks">Brooks</span>
+      <p class="sub">Área restrita — moderadores</p>
+    </div>
+    <div class="form-group">
+      <label>Usuário</label>
+      <input type="text" id="loginUser" placeholder="seu usuário" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label>Senha</label>
+      <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div id="loginError" class="error-msg">Usuário ou senha incorretos.</div>
+    <button class="btn btn-blue" style="width:100%;padding:0.75rem;font-size:0.9rem;" onclick="doLogin()">Entrar</button>
+    <br><br>
+    <button class="btn btn-ghost" style="width:100%;" onclick="closeLogin()">← Voltar ao catálogo</button>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" onclick="filterCategory('todos')">
+    <div><div class="logo-vw">VW</div><div class="logo-brooks">Brooks</div></div>
+  </div>
+  <div class="header-right">
+    <button class="btn btn-ghost btn-sm" id="btnAdmin" onclick="openLogin()">Admin</button>
+    <button class="btn btn-blue btn-sm" id="btnAdd" style="display:none;" onclick="openAddModal()">+ Adicionar</button>
+  </div>
+</header>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel">
+  <div class="ap-inner">
+    <div class="ap-user">
+      <div class="ap-avatar" id="apAvatar">M</div>
+      <div class="ap-info">
+        <p id="apUser">moderador</p>
+        <small>Modo administrador ativo</small>
+      </div>
+    </div>
+    <div class="ap-actions">
+      <button class="btn btn-blue btn-sm" onclick="openAddModal()">+ Nova peça</button>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">Sair</button>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div id="statsBar">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-label">Total de peças</div><div class="stat-value blue" id="sTot">0</div></div>
+    <div class="stat"><div class="stat-label">Disponíveis</div><div class="stat-value" id="sAvail">0</div></div>
+    <div class="stat"><div class="stat-label">Esgotados</div><div class="stat-value" id="sOut">0</div></div>
+    <div class="stat"><div class="stat-label">Categorias</div><div class="stat-value" id="sCats">0</div></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Coleção Atual</div>
+  <h1><span class="blue">VW</span> Brooks</h1>
+  <p>Estilo urbano — peças exclusivas pra você</p>
+</div>
+
+<!-- CATEGORY BAR -->
+<div class="cat-bar" id="catBar">
+  <button class="cat-btn active" onclick="filterCategory('todos')">Todos</button>
+</div>
+
+<!-- MAIN -->
+<main>
+  <div class="section-header">
+    <h2 id="sectionTitle">Todas as peças</h2>
+    <span class="count-badge" id="countBadge"></span>
+  </div>
+  <div class="grid" id="productGrid"></div>
+  <div class="empty" id="emptyState" style="display:none;">
+    <div class="icon">👕</div>
+    <p>Nenhuma peça aqui ainda.</p>
+  </div>
+</main>
+
+<!-- MODAL ADD/EDIT -->
+<div class="overlay" id="productModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Nova Peça</h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="form-group">
+      <label>Nome da peça *</label>
+      <input type="text" id="fName" placeholder="Ex: Moletom Drop Shoulder">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Preço (R$) *</label>
+        <input type="number" id="fPrice" placeholder="0.00" step="0.01" min="0">
+      </div>
+      <div class="form-group">
+        <label>Categoria *</label>
+        <input type="text" id="fCategory" placeholder="Ex: Moletons" list="catList">
+        <datalist id="catList"></datalist>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Descrição</label>
+      <textarea id="fDesc" placeholder="Material, detalhes, estampa..."></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Tamanhos</label>
+        <input type="text" id="fSizes" placeholder="PP P M G GG">
+      </div>
+      <div class="form-group">
+        <label>Status</label>
+        <select id="fAvailable">
+          <option value="sim">Disponível</option>
+          <option value="nao">Esgotado</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Foto da peça</label>
+      <input type="file" id="fImage" accept="image/*" onchange="previewImage(event)">
+      <div class="img-preview" id="imgPreview">📷</div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-blue" onclick="saveProduct()">Salvar peça</button>
+    </div>
+    <div class="delete-zone" id="deleteZone">
+      <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct()">🗑 Excluir esta peça</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+//  MODERADORES — altere as senhas antes de publicar
+// ══════════════════════════════════════════════
+const MODERATORS = {
+  "moderador1": "senha123",
+  "moderador2": "senha456"
+};
+// ══════════════════════════════════════════════
+
+let products = JSON.parse(localStorage.getItem('vwbrooks') || '[]');
+let currentCat = 'todos';
+let isAdmin = false;
+let editingId = null;
+let editingImg = null;
+
+function openLogin(){
+  document.getElementById('loginScreen').classList.add('open');
+  setTimeout(()=>document.getElementById('loginUser').focus(),100);
+}
+function closeLogin(){
+  document.getElementById('loginScreen').classList.remove('open');
+  document.getElementById('loginError').style.display='none';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+}
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim();
+  const p=document.getElementById('loginPass').value;
+  if(MODERATORS[u]&&MODERATORS[u]===p){
+    isAdmin=true;
+    closeLogin();
+    document.getElementById('adminPanel').classList.add('show');
+    document.getElementById('statsBar').classList.add('show');
+    document.getElementById('apUser').textContent=u;
+    document.getElementById('apAvatar').textContent=u[0].toUpperCase();
+    document.getElementById('btnAdmin').style.display='none';
+    document.getElementById('btnAdd').style.display='inline-block';
+    renderAll();
+  } else {
+    document.getElementById('loginError').style.display='block';
+  }
+}
+function logout(){
+  isAdmin=false;
+  document.getElementById('adminPanel').classList.remove('show');
+  document.getElementById('statsBar').classList.remove('show');
+  document.getElementById('btnAdmin').style.display='inline-block';
+  document.getElementById('btnAdd').style.display='none';
+  renderAll();
+}
+
+function save(){ localStorage.setItem('vwbrooks',JSON.stringify(products)); }
+function getCats(){ return [...new Set(products.map(p=>p.category).filter(Boolean))]; }
+
+function updateStats(){
+  const av=products.filter(p=>p.available==='sim').length;
+  document.getElementById('sTot').textContent=products.length;
+  document.getElementById('sAvail').textContent=av;
+  document.getElementById('sOut').textContent=products.length-av;
+  document.getElementById('sCats').textContent=getCats().length;
+}
+
+function renderCatBar(){
+  const bar=document.getElementById('catBar');
+  bar.innerHTML=`<button class="cat-btn ${currentCat==='todos'?'active':''}" onclick="filterCategory('todos')">Todos</button>`;
+  getCats().forEach(c=>{
+    bar.innerHTML+=`<button class="cat-btn ${currentCat===c?'active':''}" onclick="filterCategory(${JSON.stringify(c)})">${c}</button>`;
+  });
+  const dl=document.getElementById('catList');
+  if(dl) dl.innerHTML=getCats().map(c=>`<option value="${c}">`).join('');
+}
+
+function renderGrid(){
+  const grid=document.getElementById('productGrid');
+  const empty=document.getElementById('emptyState');
+  const filtered=currentCat==='todos'?products:products.filter(p=>p.category===currentCat);
+  document.getElementById('countBadge').textContent=filtered.length+(filtered.length===1?' peça':' peças');
+  if(!filtered.length){grid.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML=filtered.map(p=>`
+    <div class="card">
+      <div class="card-img-wrap">
+        ${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy">`:'👕'}
+        <span class="badge-status ${p.available}">${p.available==='sim'?'Disponível':'Esgotado'}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${p.category||'Geral'}</div>
+        <div class="card-name">${p.name}</div>
+        ${p.desc?`<div class="card-desc">${p.desc}</div>`:''}
+        ${p.sizes?`<div class="card-sizes">📐 ${p.sizes}</div>`:''}
+        <div class="card-footer">
+          <div class="price"><span>R$</span> ${parseFloat(p.price).toFixed(2)}</div>
+        </div>
+        ${isAdmin?`<div class="card-admin-bar"><button class="btn-edit-card" onclick="openEditModal('${p.id}')">✏ Editar peça</button></div>`:''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderAll(){ renderCatBar(); renderGrid(); updateStats(); }
+
+function filterCategory(cat){
+  currentCat=cat;
+  document.getElementById('sectionTitle').textContent=cat==='todos'?'Todas as peças':cat;
+  renderAll();
+}
+
+function openAddModal(){
+  editingId=null; editingImg=null;
+  document.getElementById('modalTitle').textContent='Nova Peça';
+  ['fName','fPrice','fCategory','fDesc','fSizes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fAvailable').value='sim';
+  document.getElementById('fImage').value='';
+  document.getElementById('imgPreview').innerHTML='📷';
+  document.getElementById('deleteZone').style.display='none';
+  document.getElementById('productModal').classList.add('open');
+  setTimeout(()=>document.getElementById('fName').focus(),100);
+}
+function openEditModal(id){
+  const p=products.find(x=>x.id===id); if(!p) return;
+  editingId=id; editingImg=p.image||null;
+  document.getElementById('modalTitle').textContent='Editar Peça';
+  document.getElementById('fName').value=p.name;
+  document.getElementById('fPrice').value=p.price;
+  document.getElementById('fCategory').value=p.category;
+  document.getElementById('fDesc').value=p.desc||'';
+  document.getElementById('fSizes').value=p.sizes||'';
+  document.getElementById('fAvailable').value=p.available;
+  document.getElementById('fImage').value='';
+  document.getElementById('imgPreview').innerHTML=p.image?`<img src="${p.image}" alt="">`:'📷';
+  document.getElementById('deleteZone').style.display='block';
+  document.getElementById('productModal').classList.add('open');
+}
+function closeModal(){ document.getElementById('productModal').classList.remove('open'); }
+document.getElementById('productModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+
+function previewImage(e){
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=ev=>{editingImg=ev.target.result; document.getElementById('imgPreview').innerHTML=`<img src="${ev.target.result}" alt="">`;};
+  r.readAsDataURL(file);
+}
+
+function saveProduct(){
+  const name=document.getElementById('fName').value.trim();
+  const price=document.getElementById('fPrice').value;
+  const cat=document.getElementById('fCategory').value.trim();
+  if(!name||!price||!cat){alert('Preencha nome, preço e categoria.');return;}
+  if(editingId){
+    const i=products.findIndex(p=>p.id===editingId);
+    products[i]={...products[i],name,price:parseFloat(price),category:cat,
+      desc:document.getElementById('fDesc').value.trim(),
+      sizes:document.getElementById('fSizes').value.trim(),
+      available:document.getElementById('fAvailable').value,
+      image:editingImg};
+  } else {
+    products.push({id:Date.now().toString(),name,price:parseFloat(price),category:cat,
+      desc:document.getElementById('fDesc').value.trim(),
+      sizes:document.getElementById('fSizes').value.trim(),
+      available:document.getElementById('fAvailable').value,
+      image:editingImg||null});
+  }
+  save(); closeModal(); renderAll();
+}
+
+function deleteProduct(){
+  if(!confirm('Excluir esta peça?')) return;
+  products=products.filter(p=>p.id!==editingId);
+  save(); closeModal(); filterCategory(currentCat);
+}
+
+renderAll();
+</script>
+</body>
+</html>
