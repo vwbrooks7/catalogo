@@ -26,35 +26,16 @@ body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:var(--bg);}
 ::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px;}
-
-/* LOADING */
-#loadingScreen{
-  position:fixed;inset:0;background:var(--bg);z-index:999;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;
-}
-.spinner{
-  width:36px;height:36px;border:3px solid var(--border);
-  border-top-color:var(--blue);border-radius:50%;animation:spin 0.7s linear infinite;
-}
+#loadingScreen{position:fixed;inset:0;background:var(--bg);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
+.spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 #loadingScreen p{font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);}
-
-/* HEADER */
-header{
-  background:var(--bg2);border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:100;padding:0 2rem;height:66px;
-  display:flex;align-items:center;justify-content:space-between;
-}
+header{background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;padding:0 2rem;height:66px;display:flex;align-items:center;justify-content:space-between;}
 .logo{display:flex;align-items:center;gap:0.5rem;cursor:pointer;user-select:none;}
 .logo-vw{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;line-height:1;color:var(--blue-bright);text-transform:uppercase;letter-spacing:-0.02em;}
 .logo-brooks{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;color:#fff;letter-spacing:0.18em;text-transform:uppercase;line-height:1;padding-top:3px;}
 .header-right{display:flex;align-items:center;gap:0.6rem;}
-
-.btn{
-  font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;
-  text-transform:uppercase;font-size:0.82rem;padding:0.45rem 1.1rem;border-radius:4px;
-  border:none;cursor:pointer;transition:all 0.15s;
-}
+.btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;font-size:0.82rem;padding:0.45rem 1.1rem;border-radius:4px;border:none;cursor:pointer;transition:all 0.15s;}
 .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--muted);}
 .btn-ghost:hover{border-color:var(--blue);color:var(--blue);}
 .btn-blue{background:var(--blue);color:#fff;}
@@ -62,8 +43,6 @@ header{
 .btn-danger{background:var(--danger);color:#fff;}
 .btn-danger:hover{opacity:0.85;}
 .btn-sm{font-size:0.78rem;padding:0.38rem 1rem;}
-
-/* ADMIN PANEL */
 #adminPanel{display:none;background:var(--bg2);border-bottom:1px solid var(--border);}
 #adminPanel.show{display:block;}
 .ap-inner{max-width:1400px;margin:0 auto;padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
@@ -72,40 +51,28 @@ header{
 .ap-info p{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.88rem;letter-spacing:0.06em;text-transform:uppercase;}
 .ap-info small{font-size:0.72rem;color:var(--muted);}
 .ap-actions{display:flex;gap:0.5rem;}
-
-/* STATS */
 #statsBar{display:none;background:var(--bg3);border-bottom:1px solid var(--border);}
 #statsBar.show{display:block;}
 .stats-inner{max-width:1400px;margin:0 auto;padding:0.9rem 2rem;display:flex;gap:2.5rem;flex-wrap:wrap;}
 .stat-label{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);font-weight:700;}
 .stat-value{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;color:#fff;line-height:1.1;}
 .stat-value.blue{color:var(--blue-bright);}
-
-/* HERO */
 .hero{background:var(--bg2);border-bottom:1px solid var(--border);padding:3rem 2rem 2.5rem;text-align:center;position:relative;overflow:hidden;}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 110%, rgba(33,150,243,0.1) 0%,transparent 65%);pointer-events:none;}
 .hero-tag{display:inline-block;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--blue-bright);border:1px solid var(--border-blue);padding:0.22rem 0.9rem;border-radius:2px;margin-bottom:1rem;}
 .hero h1{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(2.8rem,7vw,5rem);text-transform:uppercase;letter-spacing:-0.01em;line-height:0.95;margin-bottom:0.75rem;}
 .hero h1 .blue{color:var(--blue-bright);}
 .hero p{color:var(--muted);font-size:0.9rem;letter-spacing:0.06em;font-weight:300;}
-
-/* CAT BAR */
 .cat-bar{background:var(--bg2);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;overflow-x:auto;scrollbar-width:none;}
 .cat-bar::-webkit-scrollbar{display:none;}
 .cat-btn{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.9rem 1.25rem;border:none;background:transparent;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.15s;}
 .cat-btn:hover{color:var(--text);}
 .cat-btn.active{color:var(--blue-bright);border-bottom-color:var(--blue-bright);}
-
-/* MAIN */
 main{padding:2rem;max-width:1400px;margin:0 auto;}
 .section-header{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:1.5rem;}
 .section-header h2{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.5rem;text-transform:uppercase;letter-spacing:0.05em;}
 .count-badge{font-size:0.78rem;color:var(--muted);}
-
-/* GRID */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(235px,1fr));gap:1.2rem;}
-
-/* CARD */
 .card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color 0.2s,transform 0.2s;}
 .card:hover{border-color:var(--border-blue);transform:translateY(-2px);}
 .card-img-wrap{position:relative;aspect-ratio:3/4;background:var(--bg3);display:flex;align-items:center;justify-content:center;font-size:3rem;color:var(--bg4);overflow:hidden;}
@@ -124,12 +91,8 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
 .card-admin-bar{margin-top:0.7rem;padding-top:0.7rem;border-top:1px solid var(--border);display:flex;gap:0.4rem;}
 .btn-edit-card{flex:1;padding:0.38rem;background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.15s;}
 .btn-edit-card:hover{border-color:var(--blue);color:var(--blue);}
-
-/* EMPTY */
 .empty{text-align:center;padding:5rem 2rem;color:var(--muted);}
 .empty .icon{font-size:2.5rem;margin-bottom:1rem;opacity:0.3;}
-
-/* OVERLAY/MODAL */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:300;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(5px);}
 .overlay.open{display:flex;}
 .modal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;width:100%;max-width:490px;max-height:92vh;overflow-y:auto;padding:2rem;}
@@ -146,12 +109,15 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
 .img-preview{width:100%;aspect-ratio:3/4;background:var(--bg3);border:1px dashed rgba(255,255,255,0.1);border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-top:0.45rem;color:var(--muted);font-size:2rem;}
 .img-preview img{width:100%;height:100%;object-fit:cover;}
+/* BARRA DE PROGRESSO */
+.upload-progress{margin-top:0.6rem;display:none;}
+.upload-bar-bg{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+.upload-bar-fill{height:100%;background:var(--blue);border-radius:2px;width:0%;transition:width 0.15s;}
+.upload-pct{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.3rem;}
 .modal-actions{display:flex;gap:0.7rem;margin-top:1.4rem;}
 .modal-actions .btn{flex:1;padding:0.68rem;}
 .delete-zone{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:none;}
 .saving-indicator{font-size:0.78rem;color:var(--blue);text-align:center;margin-top:0.5rem;display:none;}
-
-/* LOGIN */
 .login-screen{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:400;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
 .login-screen.open{display:flex;}
 .login-box{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:2.5rem;width:100%;max-width:360px;}
@@ -160,11 +126,8 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
 .login-logo .brooks{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:1rem;letter-spacing:0.3em;color:#fff;text-transform:uppercase;}
 .login-logo .sub{font-size:0.75rem;color:var(--muted);margin-top:0.5rem;letter-spacing:0.08em;}
 .error-msg{background:rgba(244,67,54,0.1);border:1px solid rgba(244,67,54,0.25);color:#ef5350;font-size:0.8rem;padding:0.45rem 0.7rem;border-radius:4px;margin-bottom:0.75rem;display:none;}
-
-/* TOAST */
 .toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--border-blue);color:var(--text);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;padding:0.6rem 1.4rem;border-radius:4px;z-index:999;transition:transform 0.3s ease;pointer-events:none;}
 .toast.show{transform:translateX(-50%) translateY(0);}
-
 @media(max-width:600px){
   header{padding:0 1rem;}
   main{padding:1rem;}
@@ -177,13 +140,11 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
 </head>
 <body>
 
-<!-- LOADING -->
 <div id="loadingScreen">
   <div class="spinner"></div>
   <p>Carregando catálogo...</p>
 </div>
 
-<!-- LOGIN -->
 <div class="login-screen" id="loginScreen">
   <div class="login-box">
     <div class="login-logo">
@@ -206,7 +167,6 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
   </div>
 </div>
 
-<!-- HEADER -->
 <header>
   <div class="logo" onclick="filterCategory('todos')">
     <div><div class="logo-vw">VW</div><div class="logo-brooks">Brooks</div></div>
@@ -217,7 +177,6 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
   </div>
 </header>
 
-<!-- ADMIN PANEL -->
 <div id="adminPanel">
   <div class="ap-inner">
     <div class="ap-user">
@@ -234,7 +193,6 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
   </div>
 </div>
 
-<!-- STATS BAR -->
 <div id="statsBar">
   <div class="stats-inner">
     <div class="stat"><div class="stat-label">Total de peças</div><div class="stat-value blue" id="sTot">0</div></div>
@@ -244,19 +202,16 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
   </div>
 </div>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-tag">Coleção Atual</div>
   <h1><span class="blue">VW</span> Brooks</h1>
   <p>Estilo urbano — peças exclusivas pra você</p>
 </div>
 
-<!-- CATEGORY BAR -->
 <div class="cat-bar" id="catBar">
   <button class="cat-btn active" onclick="filterCategory('todos')">Todos</button>
 </div>
 
-<!-- MAIN -->
 <main>
   <div class="section-header">
     <h2 id="sectionTitle">Todas as peças</h2>
@@ -269,7 +224,6 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
   </div>
 </main>
 
-<!-- MODAL ADD/EDIT -->
 <div class="overlay" id="productModal">
   <div class="modal">
     <div class="modal-header">
@@ -311,30 +265,30 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
     <div class="form-group">
       <label>Foto da peça</label>
       <input type="file" id="fImage" accept="image/*" onchange="previewImage(event)">
+      <div class="upload-progress" id="uploadProgress">
+        <div class="upload-bar-bg"><div class="upload-bar-fill" id="uploadFill"></div></div>
+        <div class="upload-pct" id="uploadPct">Enviando foto... 0%</div>
+      </div>
       <div class="img-preview" id="imgPreview">📷</div>
     </div>
     <div class="modal-actions">
       <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
       <button class="btn btn-blue" id="btnSave" onclick="saveProduct()">Salvar peça</button>
     </div>
-    <div class="saving-indicator" id="savingIndicator">Salvando na nuvem...</div>
+    <div class="saving-indicator" id="savingIndicator">Salvando...</div>
     <div class="delete-zone" id="deleteZone">
       <button class="btn btn-danger" style="width:100%;" onclick="deleteProduct()">🗑 Excluir esta peça</button>
     </div>
   </div>
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
-// ══════════════════════════════════════════════
-// SUAS CREDENCIAIS DO FIREBASE
-// ══════════════════════════════════════════════
 const firebaseConfig = {
   apiKey: "AIzaSyBh0bXc65rWodtxC5QSrlL62GmlA6xz6AQ",
   authDomain: "catalogovwbrooks.firebaseapp.com",
@@ -345,131 +299,131 @@ const firebaseConfig = {
   measurementId: "G-H9SSHE92D9"
 };
 
-// ══════════════════════════════════════════════
-// MODERADORES — altere as senhas antes de publicar
-// ══════════════════════════════════════════════
 const MODERATORS = {
   "moderador1": "senha123",
   "moderador2": "senha456"
 };
-// ══════════════════════════════════════════════
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const app     = initializeApp(firebaseConfig);
+const db      = getFirestore(app);
+const storage = getStorage(app);
 
-let products = [];
-let currentCat = 'todos';
-let isAdmin = false;
-let editingId = null;
-let editingImg = null;
+let products        = [];
+let currentCat      = 'todos';
+let isAdmin         = false;
+let editingId       = null;
+let editingImageUrl = null;
+let selectedFile    = null;
 
 // ── Toast ──
 let toastTimer;
 function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
   clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
 }
 
-// ── Escuta tempo real do Firestore ──
-const q = query(collection(db,'produtos'), orderBy('createdAt','desc'));
+// ── Realtime Firestore ──
+const q = query(collection(db, 'produtos'), orderBy('createdAt', 'desc'));
 onSnapshot(q, (snapshot) => {
-  products = snapshot.docs.map(d => ({id: d.id, ...d.data()}));
+  products = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
   renderAll();
-  document.getElementById('loadingScreen').style.display='none';
-}, (error) => {
-  console.error(error);
-  document.getElementById('loadingScreen').style.display='none';
+  document.getElementById('loadingScreen').style.display = 'none';
+}, () => {
+  document.getElementById('loadingScreen').style.display = 'none';
 });
 
 // ── Login ──
 function openLogin(){
   document.getElementById('loginScreen').classList.add('open');
-  setTimeout(()=>document.getElementById('loginUser').focus(),100);
+  setTimeout(() => document.getElementById('loginUser').focus(), 100);
 }
 window.openLogin = openLogin;
 
 function closeLogin(){
   document.getElementById('loginScreen').classList.remove('open');
-  document.getElementById('loginError').style.display='none';
-  document.getElementById('loginUser').value='';
-  document.getElementById('loginPass').value='';
+  document.getElementById('loginError').style.display = 'none';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
 }
 window.closeLogin = closeLogin;
 
 function doLogin(){
-  const u=document.getElementById('loginUser').value.trim();
-  const p=document.getElementById('loginPass').value;
-  if(MODERATORS[u] && MODERATORS[u]===p){
-    isAdmin=true;
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if(MODERATORS[u] && MODERATORS[u] === p){
+    isAdmin = true;
     closeLogin();
     document.getElementById('adminPanel').classList.add('show');
     document.getElementById('statsBar').classList.add('show');
-    document.getElementById('apUser').textContent=u;
-    document.getElementById('apAvatar').textContent=u[0].toUpperCase();
-    document.getElementById('btnAdmin').style.display='none';
-    document.getElementById('btnAdd').style.display='inline-block';
+    document.getElementById('apUser').textContent = u;
+    document.getElementById('apAvatar').textContent = u[0].toUpperCase();
+    document.getElementById('btnAdmin').style.display = 'none';
+    document.getElementById('btnAdd').style.display = 'inline-block';
     renderAll();
   } else {
-    document.getElementById('loginError').style.display='block';
+    document.getElementById('loginError').style.display = 'block';
   }
 }
 window.doLogin = doLogin;
 
 function logout(){
-  isAdmin=false;
+  isAdmin = false;
   document.getElementById('adminPanel').classList.remove('show');
   document.getElementById('statsBar').classList.remove('show');
-  document.getElementById('btnAdmin').style.display='inline-block';
-  document.getElementById('btnAdd').style.display='none';
+  document.getElementById('btnAdmin').style.display = 'inline-block';
+  document.getElementById('btnAdd').style.display = 'none';
   renderAll();
 }
 window.logout = logout;
 
 // ── Categorias ──
-function getCats(){ return [...new Set(products.map(p=>p.category).filter(Boolean))]; }
+function getCats(){ return [...new Set(products.map(p => p.category).filter(Boolean))]; }
 
 function updateStats(){
-  const av=products.filter(p=>p.available==='sim').length;
-  document.getElementById('sTot').textContent=products.length;
-  document.getElementById('sAvail').textContent=av;
-  document.getElementById('sOut').textContent=products.length-av;
-  document.getElementById('sCats').textContent=getCats().length;
+  const av = products.filter(p => p.available === 'sim').length;
+  document.getElementById('sTot').textContent   = products.length;
+  document.getElementById('sAvail').textContent = av;
+  document.getElementById('sOut').textContent   = products.length - av;
+  document.getElementById('sCats').textContent  = getCats().length;
 }
 
 function renderCatBar(){
-  const bar=document.getElementById('catBar');
-  bar.innerHTML=`<button class="cat-btn ${currentCat==='todos'?'active':''}" onclick="filterCategory('todos')">Todos</button>`;
-  getCats().forEach(c=>{
-    bar.innerHTML+=`<button class="cat-btn ${currentCat===c?'active':''}" onclick="filterCategory(${JSON.stringify(c)})">${c}</button>`;
+  const bar = document.getElementById('catBar');
+  bar.innerHTML = `<button class="cat-btn ${currentCat==='todos'?'active':''}" onclick="filterCategory('todos')">Todos</button>`;
+  getCats().forEach(c => {
+    bar.innerHTML += `<button class="cat-btn ${currentCat===c?'active':''}" onclick="filterCategory(${JSON.stringify(c)})">${c}</button>`;
   });
-  const dl=document.getElementById('catList');
-  if(dl) dl.innerHTML=getCats().map(c=>`<option value="${c}">`).join('');
+  const dl = document.getElementById('catList');
+  if(dl) dl.innerHTML = getCats().map(c => `<option value="${c}">`).join('');
 }
 
 function renderGrid(){
-  const grid=document.getElementById('productGrid');
-  const empty=document.getElementById('emptyState');
-  const filtered=currentCat==='todos'?products:products.filter(p=>p.category===currentCat);
-  document.getElementById('countBadge').textContent=filtered.length+(filtered.length===1?' peça':' peças');
-  if(!filtered.length){grid.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  grid.innerHTML=filtered.map(p=>`
+  const grid     = document.getElementById('productGrid');
+  const empty    = document.getElementById('emptyState');
+  const filtered = currentCat === 'todos' ? products : products.filter(p => p.category === currentCat);
+  document.getElementById('countBadge').textContent = filtered.length + (filtered.length === 1 ? ' peça' : ' peças');
+  if(!filtered.length){ grid.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  grid.innerHTML = filtered.map(p => `
     <div class="card">
       <div class="card-img-wrap">
-        ${p.image?`<img src="${p.image}" alt="${p.name}" loading="lazy">`:'👕'}
+        ${p.imageUrl
+          ? `<img src="${p.imageUrl}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`
+          : '👕'}
         <span class="badge-status ${p.available}">${p.available==='sim'?'Disponível':'Esgotado'}</span>
       </div>
       <div class="card-body">
         <div class="card-cat">${p.category||'Geral'}</div>
         <div class="card-name">${p.name}</div>
-        ${p.desc?`<div class="card-desc">${p.desc}</div>`:''}
-        ${p.sizes?`<div class="card-sizes">📐 ${p.sizes}</div>`:''}
+        ${p.desc  ? `<div class="card-desc">${p.desc}</div>` : ''}
+        ${p.sizes ? `<div class="card-sizes">📐 ${p.sizes}</div>` : ''}
         <div class="card-footer">
           <div class="price"><span>R$</span> ${parseFloat(p.price).toFixed(2)}</div>
         </div>
-        ${isAdmin?`<div class="card-admin-bar"><button class="btn-edit-card" onclick="openEditModal('${p.id}')">✏ Editar peça</button></div>`:''}
+        ${isAdmin ? `<div class="card-admin-bar"><button class="btn-edit-card" onclick="openEditModal('${p.id}')">✏ Editar peça</button></div>` : ''}
       </div>
     </div>
   `).join('');
@@ -478,83 +432,142 @@ function renderGrid(){
 function renderAll(){ renderCatBar(); renderGrid(); updateStats(); }
 
 function filterCategory(cat){
-  currentCat=cat;
-  document.getElementById('sectionTitle').textContent=cat==='todos'?'Todas as peças':cat;
+  currentCat = cat;
+  document.getElementById('sectionTitle').textContent = cat === 'todos' ? 'Todas as peças' : cat;
   renderAll();
 }
 window.filterCategory = filterCategory;
 
 // ── Modal ──
+function resetModal(){
+  selectedFile = null;
+  document.getElementById('fImage').value = '';
+  document.getElementById('imgPreview').innerHTML = '📷';
+  document.getElementById('savingIndicator').style.display = 'none';
+  document.getElementById('uploadProgress').style.display  = 'none';
+  document.getElementById('uploadFill').style.width = '0%';
+}
+
 function openAddModal(){
-  editingId=null; editingImg=null;
-  document.getElementById('modalTitle').textContent='Nova Peça';
-  ['fName','fPrice','fCategory','fDesc','fSizes'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('fAvailable').value='sim';
-  document.getElementById('fImage').value='';
-  document.getElementById('imgPreview').innerHTML='📷';
-  document.getElementById('deleteZone').style.display='none';
-  document.getElementById('savingIndicator').style.display='none';
+  editingId = null;
+  editingImageUrl = null;
+  document.getElementById('modalTitle').textContent = 'Nova Peça';
+  ['fName','fPrice','fCategory','fDesc','fSizes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('fAvailable').value = 'sim';
+  document.getElementById('deleteZone').style.display = 'none';
+  resetModal();
   document.getElementById('productModal').classList.add('open');
-  setTimeout(()=>document.getElementById('fName').focus(),100);
+  setTimeout(() => document.getElementById('fName').focus(), 100);
 }
 window.openAddModal = openAddModal;
 
 function openEditModal(id){
-  const p=products.find(x=>x.id===id); if(!p) return;
-  editingId=id; editingImg=p.image||null;
-  document.getElementById('modalTitle').textContent='Editar Peça';
-  document.getElementById('fName').value=p.name;
-  document.getElementById('fPrice').value=p.price;
-  document.getElementById('fCategory').value=p.category;
-  document.getElementById('fDesc').value=p.desc||'';
-  document.getElementById('fSizes').value=p.sizes||'';
-  document.getElementById('fAvailable').value=p.available;
-  document.getElementById('fImage').value='';
-  document.getElementById('imgPreview').innerHTML=p.image?`<img src="${p.image}" alt="">`:'📷';
-  document.getElementById('deleteZone').style.display='block';
-  document.getElementById('savingIndicator').style.display='none';
+  const p = products.find(x => x.id === id);
+  if(!p) return;
+  editingId = id;
+  editingImageUrl = p.imageUrl || null;
+  document.getElementById('modalTitle').textContent = 'Editar Peça';
+  document.getElementById('fName').value      = p.name;
+  document.getElementById('fPrice').value     = p.price;
+  document.getElementById('fCategory').value  = p.category;
+  document.getElementById('fDesc').value      = p.desc || '';
+  document.getElementById('fSizes').value     = p.sizes || '';
+  document.getElementById('fAvailable').value = p.available;
+  document.getElementById('imgPreview').innerHTML = p.imageUrl
+    ? `<img src="${p.imageUrl}" alt="">`
+    : '📷';
+  document.getElementById('deleteZone').style.display = 'block';
+  resetModal();
+  // restaura preview se tinha imagem
+  if(p.imageUrl) document.getElementById('imgPreview').innerHTML = `<img src="${p.imageUrl}" alt="">`;
   document.getElementById('productModal').classList.add('open');
 }
 window.openEditModal = openEditModal;
 
 function closeModal(){ document.getElementById('productModal').classList.remove('open'); }
 window.closeModal = closeModal;
-document.getElementById('productModal').addEventListener('click',e=>{if(e.target===e.currentTarget)closeModal();});
+document.getElementById('productModal').addEventListener('click', e => { if(e.target === e.currentTarget) closeModal(); });
 
 function previewImage(e){
-  const file=e.target.files[0]; if(!file) return;
-  const r=new FileReader();
-  r.onload=ev=>{editingImg=ev.target.result; document.getElementById('imgPreview').innerHTML=`<img src="${ev.target.result}" alt="">`;};
-  r.readAsDataURL(file);
+  const file = e.target.files[0];
+  if(!file) return;
+  selectedFile = file;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    document.getElementById('imgPreview').innerHTML = `<img src="${ev.target.result}" alt="">`;
+  };
+  reader.readAsDataURL(file);
 }
 window.previewImage = previewImage;
 
-async function saveProduct(){
-  const name=document.getElementById('fName').value.trim();
-  const priceRaw=document.getElementById('fPrice').value.trim().replace(',','.');
-  const cat=document.getElementById('fCategory').value.trim();
-  const price=parseFloat(priceRaw);
+// ── Upload Firebase Storage com progresso ──
+function uploadImage(file){
+  return new Promise((resolve, reject) => {
+    const fileName   = `produtos/${Date.now()}_${file.name.replace(/\s+/g,'_')}`;
+    const storageRef = ref(storage, fileName);
+    const task       = uploadBytesResumable(storageRef, file);
 
-  if(!name||!priceRaw||isNaN(price)||!cat){
+    const progressEl = document.getElementById('uploadProgress');
+    const fillEl     = document.getElementById('uploadFill');
+    const pctEl      = document.getElementById('uploadPct');
+    progressEl.style.display = 'block';
+
+    task.on('state_changed',
+      (snap) => {
+        const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+        fillEl.style.width = pct + '%';
+        pctEl.textContent  = `Enviando foto... ${pct}%`;
+      },
+      (err) => { progressEl.style.display = 'none'; reject(err); },
+      async () => {
+        const url = await getDownloadURL(task.snapshot.ref);
+        progressEl.style.display = 'none';
+        resolve(url);
+      }
+    );
+  });
+}
+
+// ── Salvar peça ──
+async function saveProduct(){
+  const name     = document.getElementById('fName').value.trim();
+  const priceRaw = document.getElementById('fPrice').value.trim().replace(',','.');
+  const cat      = document.getElementById('fCategory').value.trim();
+  const price    = parseFloat(priceRaw);
+
+  if(!name || !priceRaw || isNaN(price) || !cat){
     showToast('⚠️ Preencha nome, preço e categoria');
     return;
   }
 
-  const btnSave=document.getElementById('btnSave');
-  const indicator=document.getElementById('savingIndicator');
-  btnSave.disabled=true;
-  indicator.style.display='block';
-
-  const data={
-    name, price, category:cat,
-    desc: document.getElementById('fDesc').value.trim(),
-    sizes: document.getElementById('fSizes').value.trim(),
-    available: document.getElementById('fAvailable').value,
-    image: editingImg||null,
-    createdAt: editingId ? (products.find(p=>p.id===editingId)?.createdAt || Date.now()) : Date.now()
-  };
+  const btnSave   = document.getElementById('btnSave');
+  const indicator = document.getElementById('savingIndicator');
+  btnSave.disabled = true;
+  indicator.style.display = 'block';
 
   try {
+    let imageUrl = editingImageUrl;
+
+    if(selectedFile){
+      indicator.textContent = 'Enviando foto...';
+      imageUrl = await uploadImage(selectedFile);
+    }
+
+    indicator.textContent = 'Salvando...';
+
+    const data = {
+      name,
+      price,
+      category  : cat,
+      desc      : document.getElementById('fDesc').value.trim(),
+      sizes     : document.getElementById('fSizes').value.trim(),
+      available : document.getElementById('fAvailable').value,
+      imageUrl  : imageUrl || null,
+      createdAt : editingId
+        ? (products.find(p => p.id === editingId)?.createdAt || Date.now())
+        : Date.now()
+    };
+
     if(editingId){
       await updateDoc(doc(db,'produtos',editingId), data);
       showToast('✅ Peça atualizada!');
@@ -564,18 +577,26 @@ async function saveProduct(){
     }
     closeModal();
   } catch(err){
-    showToast('❌ Erro ao salvar. Tente novamente.');
     console.error(err);
+    showToast('❌ Erro ao salvar. Tente novamente.');
   }
 
-  btnSave.disabled=false;
-  indicator.style.display='none';
+  btnSave.disabled = false;
+  indicator.style.display = 'none';
 }
 window.saveProduct = saveProduct;
 
+// ── Excluir peça ──
 async function deleteProduct(){
   if(!confirm('Excluir esta peça?')) return;
   try {
+    const p = products.find(x => x.id === editingId);
+    if(p && p.imageUrl){
+      try {
+        const path = decodeURIComponent(p.imageUrl.split('/o/')[1].split('?')[0]);
+        await deleteObject(ref(storage, path));
+      } catch(e){ /* imagem já removida, ignora */ }
+    }
     await deleteDoc(doc(db,'produtos',editingId));
     showToast('🗑 Peça excluída');
     closeModal();
@@ -584,7 +605,6 @@ async function deleteProduct(){
   }
 }
 window.deleteProduct = deleteProduct;
-
 </script>
 </body>
 </html>
