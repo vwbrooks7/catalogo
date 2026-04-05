@@ -107,13 +107,13 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
 .form-group textarea{resize:vertical;min-height:72px;}
 .form-group select option{background:var(--bg3);}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+/* DICA DO IMGUR */
+.imgur-tip{background:var(--bg3);border:1px solid var(--border-blue);border-radius:6px;padding:0.65rem 0.85rem;margin-top:0.45rem;font-size:0.78rem;color:var(--muted);line-height:1.5;}
+.imgur-tip a{color:var(--blue-bright);text-decoration:none;}
+.imgur-tip a:hover{text-decoration:underline;}
+/* PREVIEW */
 .img-preview{width:100%;aspect-ratio:3/4;background:var(--bg3);border:1px dashed rgba(255,255,255,0.1);border-radius:4px;display:flex;align-items:center;justify-content:center;overflow:hidden;margin-top:0.45rem;color:var(--muted);font-size:2rem;}
 .img-preview img{width:100%;height:100%;object-fit:cover;}
-/* BARRA DE PROGRESSO */
-.upload-progress{margin-top:0.6rem;display:none;}
-.upload-bar-bg{height:4px;background:var(--bg4);border-radius:2px;overflow:hidden;}
-.upload-bar-fill{height:100%;background:var(--blue);border-radius:2px;width:0%;transition:width 0.15s;}
-.upload-pct{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;color:var(--blue);letter-spacing:0.08em;text-transform:uppercase;margin-top:0.3rem;}
 .modal-actions{display:flex;gap:0.7rem;margin-top:1.4rem;}
 .modal-actions .btn{flex:1;padding:0.68rem;}
 .delete-zone{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);display:none;}
@@ -224,6 +224,7 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
   </div>
 </main>
 
+<!-- MODAL ADD/EDIT -->
 <div class="overlay" id="productModal">
   <div class="modal">
     <div class="modal-header">
@@ -262,15 +263,17 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
         </select>
       </div>
     </div>
+
+    <!-- CAMPO DE LINK DA IMAGEM -->
     <div class="form-group">
-      <label>Foto da peça</label>
-      <input type="file" id="fImage" accept="image/*" onchange="previewImage(event)">
-      <div class="upload-progress" id="uploadProgress">
-        <div class="upload-bar-bg"><div class="upload-bar-fill" id="uploadFill"></div></div>
-        <div class="upload-pct" id="uploadPct">Enviando foto... 0%</div>
+      <label>Link da foto</label>
+      <input type="url" id="fImageUrl" placeholder="https://i.imgur.com/exemplo.jpg" oninput="previewUrl(this.value)">
+      <div class="imgur-tip">
+        💡 Suba a foto em <a href="https://imgur.com/upload" target="_blank">imgur.com</a>, clique com botão direito na imagem → <strong>Copiar endereço da imagem</strong> e cole aqui.
       </div>
       <div class="img-preview" id="imgPreview">📷</div>
     </div>
+
     <div class="modal-actions">
       <button class="btn btn-ghost" onclick="closeModal()">Cancelar</button>
       <button class="btn btn-blue" id="btnSave" onclick="saveProduct()">Salvar peça</button>
@@ -287,7 +290,6 @@ main{padding:2rem;max-width:1400px;margin:0 auto;}
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL, deleteObject } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBh0bXc65rWodtxC5QSrlL62GmlA6xz6AQ",
@@ -304,16 +306,13 @@ const MODERATORS = {
   "moderador2": "senha456"
 };
 
-const app     = initializeApp(firebaseConfig);
-const db      = getFirestore(app);
-const storage = getStorage(app);
+const app = initializeApp(firebaseConfig);
+const db  = getFirestore(app);
 
-let products        = [];
-let currentCat      = 'todos';
-let isAdmin         = false;
-let editingId       = null;
-let editingImageUrl = null;
-let selectedFile    = null;
+let products   = [];
+let currentCat = 'todos';
+let isAdmin    = false;
+let editingId  = null;
 
 // ── Toast ──
 let toastTimer;
@@ -379,7 +378,7 @@ function logout(){
 }
 window.logout = logout;
 
-// ── Categorias ──
+// ── Render ──
 function getCats(){ return [...new Set(products.map(p => p.category).filter(Boolean))]; }
 
 function updateStats(){
@@ -438,24 +437,26 @@ function filterCategory(cat){
 }
 window.filterCategory = filterCategory;
 
-// ── Modal ──
-function resetModal(){
-  selectedFile = null;
-  document.getElementById('fImage').value = '';
-  document.getElementById('imgPreview').innerHTML = '📷';
-  document.getElementById('savingIndicator').style.display = 'none';
-  document.getElementById('uploadProgress').style.display  = 'none';
-  document.getElementById('uploadFill').style.width = '0%';
+// ── Preview de URL ──
+function previewUrl(url){
+  const preview = document.getElementById('imgPreview');
+  if(url && url.startsWith('http')){
+    preview.innerHTML = `<img src="${url}" alt="" onerror="this.parentElement.innerHTML='❌ Link inválido'">`;
+  } else {
+    preview.innerHTML = '📷';
+  }
 }
+window.previewUrl = previewUrl;
 
+// ── Modal ──
 function openAddModal(){
   editingId = null;
-  editingImageUrl = null;
   document.getElementById('modalTitle').textContent = 'Nova Peça';
-  ['fName','fPrice','fCategory','fDesc','fSizes'].forEach(id => document.getElementById(id).value = '');
+  ['fName','fPrice','fCategory','fDesc','fSizes','fImageUrl'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('fAvailable').value = 'sim';
+  document.getElementById('imgPreview').innerHTML = '📷';
   document.getElementById('deleteZone').style.display = 'none';
-  resetModal();
+  document.getElementById('savingIndicator').style.display = 'none';
   document.getElementById('productModal').classList.add('open');
   setTimeout(() => document.getElementById('fName').focus(), 100);
 }
@@ -465,7 +466,6 @@ function openEditModal(id){
   const p = products.find(x => x.id === id);
   if(!p) return;
   editingId = id;
-  editingImageUrl = p.imageUrl || null;
   document.getElementById('modalTitle').textContent = 'Editar Peça';
   document.getElementById('fName').value      = p.name;
   document.getElementById('fPrice').value     = p.price;
@@ -473,13 +473,12 @@ function openEditModal(id){
   document.getElementById('fDesc').value      = p.desc || '';
   document.getElementById('fSizes').value     = p.sizes || '';
   document.getElementById('fAvailable').value = p.available;
+  document.getElementById('fImageUrl').value  = p.imageUrl || '';
   document.getElementById('imgPreview').innerHTML = p.imageUrl
     ? `<img src="${p.imageUrl}" alt="">`
     : '📷';
-  document.getElementById('deleteZone').style.display = 'block';
-  resetModal();
-  // restaura preview se tinha imagem
-  if(p.imageUrl) document.getElementById('imgPreview').innerHTML = `<img src="${p.imageUrl}" alt="">`;
+  document.getElementById('deleteZone').style.display  = 'block';
+  document.getElementById('savingIndicator').style.display = 'none';
   document.getElementById('productModal').classList.add('open');
 }
 window.openEditModal = openEditModal;
@@ -488,47 +487,7 @@ function closeModal(){ document.getElementById('productModal').classList.remove(
 window.closeModal = closeModal;
 document.getElementById('productModal').addEventListener('click', e => { if(e.target === e.currentTarget) closeModal(); });
 
-function previewImage(e){
-  const file = e.target.files[0];
-  if(!file) return;
-  selectedFile = file;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    document.getElementById('imgPreview').innerHTML = `<img src="${ev.target.result}" alt="">`;
-  };
-  reader.readAsDataURL(file);
-}
-window.previewImage = previewImage;
-
-// ── Upload Firebase Storage com progresso ──
-function uploadImage(file){
-  return new Promise((resolve, reject) => {
-    const fileName   = `produtos/${Date.now()}_${file.name.replace(/\s+/g,'_')}`;
-    const storageRef = ref(storage, fileName);
-    const task       = uploadBytesResumable(storageRef, file);
-
-    const progressEl = document.getElementById('uploadProgress');
-    const fillEl     = document.getElementById('uploadFill');
-    const pctEl      = document.getElementById('uploadPct');
-    progressEl.style.display = 'block';
-
-    task.on('state_changed',
-      (snap) => {
-        const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
-        fillEl.style.width = pct + '%';
-        pctEl.textContent  = `Enviando foto... ${pct}%`;
-      },
-      (err) => { progressEl.style.display = 'none'; reject(err); },
-      async () => {
-        const url = await getDownloadURL(task.snapshot.ref);
-        progressEl.style.display = 'none';
-        resolve(url);
-      }
-    );
-  });
-}
-
-// ── Salvar peça ──
+// ── Salvar ──
 async function saveProduct(){
   const name     = document.getElementById('fName').value.trim();
   const priceRaw = document.getElementById('fPrice').value.trim().replace(',','.');
@@ -545,34 +504,25 @@ async function saveProduct(){
   btnSave.disabled = true;
   indicator.style.display = 'block';
 
+  const data = {
+    name,
+    price,
+    category  : cat,
+    desc      : document.getElementById('fDesc').value.trim(),
+    sizes     : document.getElementById('fSizes').value.trim(),
+    available : document.getElementById('fAvailable').value,
+    imageUrl  : document.getElementById('fImageUrl').value.trim() || null,
+    createdAt : editingId
+      ? (products.find(p => p.id === editingId)?.createdAt || Date.now())
+      : Date.now()
+  };
+
   try {
-    let imageUrl = editingImageUrl;
-
-    if(selectedFile){
-      indicator.textContent = 'Enviando foto...';
-      imageUrl = await uploadImage(selectedFile);
-    }
-
-    indicator.textContent = 'Salvando...';
-
-    const data = {
-      name,
-      price,
-      category  : cat,
-      desc      : document.getElementById('fDesc').value.trim(),
-      sizes     : document.getElementById('fSizes').value.trim(),
-      available : document.getElementById('fAvailable').value,
-      imageUrl  : imageUrl || null,
-      createdAt : editingId
-        ? (products.find(p => p.id === editingId)?.createdAt || Date.now())
-        : Date.now()
-    };
-
     if(editingId){
-      await updateDoc(doc(db,'produtos',editingId), data);
+      await updateDoc(doc(db, 'produtos', editingId), data);
       showToast('✅ Peça atualizada!');
     } else {
-      await addDoc(collection(db,'produtos'), data);
+      await addDoc(collection(db, 'produtos'), data);
       showToast('✅ Peça adicionada!');
     }
     closeModal();
@@ -586,18 +536,11 @@ async function saveProduct(){
 }
 window.saveProduct = saveProduct;
 
-// ── Excluir peça ──
+// ── Excluir ──
 async function deleteProduct(){
   if(!confirm('Excluir esta peça?')) return;
   try {
-    const p = products.find(x => x.id === editingId);
-    if(p && p.imageUrl){
-      try {
-        const path = decodeURIComponent(p.imageUrl.split('/o/')[1].split('?')[0]);
-        await deleteObject(ref(storage, path));
-      } catch(e){ /* imagem já removida, ignora */ }
-    }
-    await deleteDoc(doc(db,'produtos',editingId));
+    await deleteDoc(doc(db, 'produtos', editingId));
     showToast('🗑 Peça excluída');
     closeModal();
   } catch(err){
